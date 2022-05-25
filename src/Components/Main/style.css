@@ -17,40 +17,13 @@
     left: 0
 }
 
-.token1{
-    width: 9%;
-    height: auto;
-    position: absolute;
-    top: 0;
-}
-.token2{
+.token1, .token2, .token3, .token4{
     width: 9%;
     height: auto;
     position: absolute;
 }
-.token3{
-    width: 9%;
-    height: auto;
-    position: absolute;
-}
-.token4{
-    width: 9%;
-    height: auto;
-    position: absolute;
-}
-.token-pic-1{
-    width: 5rem;
-    height: 5rem;
-}
-.token-pic-2{
-    width: 5rem;
-    height: 5rem;
-}
-.token-pic-3{
-    width: 5rem;
-    height: 5rem;
-}
-.token-pic-4{
+
+.token-pic-1, .token-pic-2, .token-pic-3, .token-pic-4{
     width: 5rem;
     height: 5rem;
 }
@@ -59,7 +32,7 @@
     right: 0 
 }
 .defaultClass2{
-    right: 0
+    right: 0;
 }
 .defaultClass3{
     bottom: 0;
@@ -78,9 +51,71 @@
 }
 .board-options3{
     position: absolute;
-    transform:translate(50vw)
+    transform:translate(-50vw)
 }
 .board-options4{
     position: absolute;
     transform:translate(50vw)
+}
+
+.select-option{
+    background: rgba(60, 121, 213, 8);
+    width: 5rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 2px black;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    transform: translateY(-5rem);
+}
+
+.move-btn{
+    background-color: blue;
+    color: #eee;
+    display: block;
+    width: 4rem;
+    cursor: pointer;
+    margin: 0.1rem 0;
+    border: none;
+    border-radius: 0.3rem;
+}
+.cancel-btn{
+    background-color: rgb(109, 74, 8);
+    color: #eee;
+    display: block;
+    width: 4rem;
+    cursor: pointer;
+    margin: 0.1rem 0;
+    border: none;
+    border-radius: 0.3rem;
+}
+.drop-btn{
+    background-color: green;
+    color: #eee;
+    display: block;
+    width: 4rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.3rem;
+}
+
+.move-btn:hover, .cancel-btn:hover, .drop-btn:hover{
+    box-shadow: 0px 2px 2px #111;
+    color: #fff;
+}
+/* sidebar */
+.sidebar{
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30rem;
+    background-color: rgba(36,50,66,0.9);
+    display: grid;
+    place-items: center;
+}
+.sidebar-text{
+    transform: rotate(270deg);
+    font-size: 1.3rem
 }

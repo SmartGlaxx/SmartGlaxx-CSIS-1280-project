@@ -5,12 +5,14 @@ import Token1 from '../../assets/token_1.png'
 import Token2 from '../../assets/token_2.png'
 import Token3 from '../../assets/token_3.png'
 import Token4 from '../../assets/token_4.png'
+import { UseAppContext } from "../../context"
 
 const visible = {
     display:"block"
 }
 const Main = ()=>{
     const element = useRef()
+    const {background} = UseAppContext()
     const [moveXBy1, setMoveXBy1] = useState(0);
     const [moveYBy1, setMoveYBy1] = useState(0);
     const [moveXBy2, setMoveXBy2] = useState(0);
@@ -146,13 +148,13 @@ const Main = ()=>{
         setOptions1Value4(!options1Value4)
     }
    
-
+console.log(background)
     return<section className='cellBoard'>
         {
             CellData.map((item,i) =>{
                 
                 for(let i = 0; i<= 36; i++){
-                    return <><div id= {item.idValue} style={{background: item.background}} 
+                    return <><div id= {item.idValue} style={{background: "#ddd"}} 
                     onClick={()=>showRefValue(item.idValue)}
                     
                     >
@@ -164,8 +166,8 @@ const Main = ()=>{
                             <img src={Token1} alt="token1" className="token-pic-1"/>
                             {/* when clicked show this list of object 1 obtions */}
                         { options1Value1 && <div className="select-option" > 
-                            <button onClick={()=>setMotionObject1("token1")} disabled={disableBtn1}>Move</button>
-                            <button onClick={()=>setCancelAction1(true)} >Cancel</button>
+                            <button onClick={()=>setMotionObject1("token1")} disabled={disableBtn1} className="move-btn">Move</button>
+                            <button onClick={()=>setCancelAction1(true)} className="cancel-btn">Cancel</button>
                         </div>
                         }
                         </div>
@@ -176,8 +178,8 @@ const Main = ()=>{
                             <img src={Token2} id="token2" alt="token2" className="token-pic-2"/>
                             {/* when clicked show this list of object 1 obtions */}
                         { options1Value2 && <div className="select-option" > 
-                            <button onClick={()=>setMotionObject2("token2")} disabled={disableBtn2}>Move</button>
-                            <button onClick={()=>setCancelAction2(true)} >Cancel</button>
+                            <button onClick={()=>setMotionObject2("token2")} disabled={disableBtn2} className="move-btn">Move</button>
+                            <button onClick={()=>setCancelAction2(true)} className="cancel-btn">Cancel</button>
                         </div>
                         }
                         </div>
@@ -188,8 +190,8 @@ const Main = ()=>{
                             <img src={Token3} id="token3" alt="token3" className="token-pic-3"/>
                             {/* when clicked show this list of object 1 obtions */}
                         { options1Value3 && <div className="select-option" > 
-                            <button onClick={()=>setMotionObject3("token3")} disabled={disableBtn3}>Move</button>
-                            <button onClick={()=>setCancelAction3(true)} >Cancel</button>
+                            <button onClick={()=>setMotionObject3("token3")} disabled={disableBtn3} className="move-btn">Move</button>
+                            <button onClick={()=>setCancelAction3(true)}  className="cancel-btn">Cancel</button>
                         </div>
                         }
                         </div>
@@ -200,8 +202,8 @@ const Main = ()=>{
                             <img src={Token4} id="token4" alt="token4" className="token-pic-4"/>
                             {/* when clicked show this list of object 1 obtions */}
                         { options1Value4 && <div className="select-option" > 
-                            <button onClick={()=>setMotionObject4("token4")} disabled={disableBtn4}>Move</button>
-                            <button onClick={()=>setCancelAction4(true)} >Cancel</button>
+                            <button onClick={()=>setMotionObject4("token4")} disabled={disableBtn4} className="move-btn">Move</button>
+                            <button onClick={()=>setCancelAction4(true)} className="cancel-btn">Cancel</button>
                         </div>
                         }
                         </div>
@@ -216,29 +218,33 @@ const Main = ()=>{
     // show box options nesr cursor when moveAction id true
     style={moveAction1 && !noDrop1 ? {transform:`translate(${moveXBy1}px, ${moveYBy1}px)`, zIndex:"10"} : 
     {transform :`translate(${moveXBy1}px, ${moveYBy1}px)`, zIndex:"-10"}}  >
-        <button onClick={()=>setDropAction1(true)} disabled={!moveAction1}>Drop</button>
+        <button onClick={()=>setDropAction1(true)} disabled={!moveAction1} className="drop-btn">Drop</button>
     </div>}
     {<div className="board-options2" 
     // show box options nesr cursor when moveAction id true
     style={moveAction2 && !noDrop2 ? {transform:`translate(${moveXBy2}px, ${moveYBy2}px)`, zIndex:"10"} : 
     {transform :`translate(${moveXBy2}px, ${moveYBy2}px)`, zIndex:"-10"}} 
     >
-        <button onClick={()=>setDropAction2(true)} disabled={!moveAction2}>Drop</button> 
+        <button onClick={()=>setDropAction2(true)} disabled={!moveAction2} className="drop-btn">Drop</button> 
     </div>}
     {<div className="board-options3" 
     // show box options nesr cursor when moveAction id true
     style={moveAction3 && !noDrop3 ? {transform:`translate(${moveXBy3}px, ${moveYBy3}px)`, zIndex:"10"} : 
     {transform :`translate(${moveXBy3}px, ${moveYBy3}px)`, zIndex:"-10"}} 
     >
-        <button onClick={()=>setDropAction3(true)} disabled={!moveAction3}>Drop</button> 
+        <button onClick={()=>setDropAction3(true)} disabled={!moveAction3} className="drop-btn">Drop</button> 
     </div>}
     {<div className="board-options4" 
     // show box options nesr cursor when moveAction id true
     style={moveAction4 && !noDrop4 ? {transform:`translate(${moveXBy4}px, ${moveYBy4}px)`, zIndex:"10"} : 
     {transform :`translate(${moveXBy4}px, ${moveYBy4}px)`, zIndex:"-10"}} 
     >
-        <button onClick={()=>setDropAction4(true)} disabled={!moveAction4}>Drop</button> 
+        <button onClick={()=>setDropAction4(true)} disabled={!moveAction4} className="drop-btn">Drop</button> 
     </div>}
+    <div className="sidebar">
+        <div className="sidebar-text">Item_Distance_Measure</div>
+        <input type="color" id="favcolor" name="favcolor" value="#ff0000"/>
+    </div>
     </section>
 }
 
