@@ -18,69 +18,49 @@
 }
 
 .token1{
-    width: 9%;
+    width: 10%;
     height: auto;
     position: absolute;
     top: 0;
+    /* left:2rem */
+}
+.token-pic-1{
+    width: 100%;
+    height: 100%;
+    /* position: absolute;
+    top: 0; */
+    /* left:2rem */
+}
+.token-pic-2{
+    width: 100%;
+    height: 100%;
+    /* position: absolute;
+    top: 0; */
+    /* left:2rem */
+}
+.select-option1{
+    position: absolute
 }
 .token2{
     width: 9%;
     height: auto;
     position: absolute;
 }
-.token3{
-    width: 9%;
-    height: auto;
-    position: absolute;
-}
-.token4{
-    width: 9%;
-    height: auto;
-    position: absolute;
-}
-.token-pic-1{
-    width: 5rem;
-    height: 5rem;
-}
-.token-pic-2{
-    width: 5rem;
-    height: 5rem;
-}
-.token-pic-3{
-    width: 5rem;
-    height: 5rem;
-}
-.token-pic-4{
-    width: 5rem;
-    height: 5rem;
-}
-
 .newClass{
     right: 0 
 }
-.defaultClass2{
-    right: 0
-}
-.defaultClass3{
-    bottom: 0;
-}
-.defaultClass4{
-    bottom: 0;
+.defaultClass{
     right: 0
 }
 .board-options1{
     position: absolute;
     z-index:-10;
+    background-color: blue;
+    /* display: none; */
 }
 .board-options2{
     position: absolute;
-    transform:translate(50vw)
-}
-.board-options3{
-    position: absolute;
-    transform:translate(50vw)
-}
-.board-options4{
-    position: absolute;
+    /* z-index:-10; */
+    background-color: blue;
     transform:translate(50vw)
 }
