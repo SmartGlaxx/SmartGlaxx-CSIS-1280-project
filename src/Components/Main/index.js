@@ -5,14 +5,14 @@ import Token1 from '../../assets/token_1.png'
 import Token2 from '../../assets/token_2.png'
 import Token3 from '../../assets/token_3.png'
 import Token4 from '../../assets/token_4.png'
-import { UseAppContext } from "../../context"
+// import { UseAppContext } from "../../context"
 
 const visible = {
     display:"block"
 }
 const Main = ()=>{
     const element = useRef()
-    const {background} = UseAppContext()
+    // const {backgroundC} = UseAppContext()
     const [moveXBy1, setMoveXBy1] = useState(0);
     const [moveYBy1, setMoveYBy1] = useState(0);
     const [moveXBy2, setMoveXBy2] = useState(0);
@@ -33,9 +33,6 @@ const Main = ()=>{
     const [options1Value2, setOptions1Value2] = useState(false)
     const [options1Value3, setOptions1Value3] = useState(false)
     const [options1Value4, setOptions1Value4] = useState(false)
-    // const [boxOptionsValue1, setBoxOptionsValue1] = useState(false)
-    // const [boxOptionsValue2, setBoxOptionsValue2] = useState(false)
-    // const [boxOptionsValue3, setBoxOptionsValue3] = useState(false)
     const[moveAction1, setMoveAction1] = useState(false)
     const[moveAction2, setMoveAction2] = useState(false)
     const[moveAction3, setMoveAction3] = useState(false)
@@ -55,6 +52,14 @@ const Main = ()=>{
     const [started2, setStarted2] = useState(false)
     const [started3, setStarted3] = useState(false)
     const [started4, setStarted4] = useState(false)
+
+    const [AToB, setAToB] = useState({main: 0.0, x: 0.0, y: 0.0})
+    const [AToC, setAToC] = useState({main: 0.0, x: 0.0, y: 0.0})
+    const [AToD, setAToD] = useState({main: 0.0, x: 0.0, y: 0.0})
+    const [BToC, setBToC] = useState({main: 0.0, x: 0.0, y: 0.0})
+    const [BToD, setBToD] = useState({main: 0.0, x: 0.0, y: 0.0})
+    const [CToD, setCToD] = useState({main: 0.0, x: 0.0, y: 0.0})
+    
     const setDropAction1=(value)=>{
         setDisableBtn1(false)
         setNoDrop1(true)
@@ -137,24 +142,83 @@ const Main = ()=>{
 
     const showOptions1 =()=>{
         setOptions1Value1(!options1Value1)
+        checkDist()
     }
     const showOptions2 =()=>{
         setOptions1Value2(!options1Value2)
+        checkDist()
     }
     const showOptions3 =()=>{
         setOptions1Value3(!options1Value3)
+        checkDist()
     }
     const showOptions4 =()=>{
         setOptions1Value4(!options1Value4)
+        checkDist()
     }
+    useEffect(()=>{
+        checkDist()
+    },[ AToB, AToC, AToD, BToC, BToD, CToD])
    
-console.log(background)
+    const checkDist =()=>{
+        const itemA = document.querySelector(`#token1`);
+        const itemB = document.querySelector(`#token2`);
+        const itemC = document.querySelector(`#token3`);
+        const itemD = document.querySelector(`#token4`);
+
+        const token1XPos = itemA.getBoundingClientRect().x
+        const token1YPos = itemA.getBoundingClientRect().y
+        const token2XPos = itemB.getBoundingClientRect().x
+        const token2YPos = itemB.getBoundingClientRect().y
+
+        const token3XPos = itemC.getBoundingClientRect().x
+        const token3YPos = itemC.getBoundingClientRect().y
+        const token4XPos = itemD.getBoundingClientRect().x
+        const token4YPos = itemD.getBoundingClientRect().y
+
+        // calc AtoB
+        const xDistAToB = Math.abs(token1XPos - token2XPos).toFixed(2)
+        const yDistAToB = Math.abs(token1YPos - token2YPos).toFixed(2)
+        const distAToB = Math.sqrt(Math.pow(xDistAToB, 2) + Math.pow(yDistAToB, 2)).toFixed(2)
+        setAToB({main: distAToB, x: xDistAToB, y: yDistAToB})
+
+        // calc AtoC
+        const xDistAToC = Math.abs(token1XPos - token3XPos).toFixed(2)
+        const yDistAToC = Math.abs(token1YPos - token3YPos).toFixed(2)
+        const distAToC = Math.sqrt(Math.pow(xDistAToC, 2) + Math.pow(yDistAToC, 2)).toFixed(2)
+        setAToC({main: distAToC, x: xDistAToC, y: yDistAToC})
+
+        // calc AtoD
+        const xDistAToD = Math.abs(token1XPos - token4XPos).toFixed(2)
+        const yDistAToD = Math.abs(token1YPos - token4YPos).toFixed(2)
+        const distAToD = Math.sqrt(Math.pow(xDistAToD, 2) + Math.pow(yDistAToD, 2)).toFixed(2)
+        setAToD({main: distAToD, x: xDistAToD, y: yDistAToD})
+
+         // calc BtoC
+         const xDistBToC = Math.abs(token2XPos - token3XPos).toFixed(2)
+         const yDistBToC = Math.abs(token2YPos - token3YPos).toFixed(2)
+         const distBToC = Math.sqrt(Math.pow(xDistBToC, 2) + Math.pow(yDistBToC, 2)).toFixed(2)
+         setBToC({main: distBToC, x: xDistBToC, y: yDistBToC})
+         
+         // calc BtoD
+         const xDistBToD = Math.abs(token2XPos - token4XPos).toFixed(2)
+         const yDistBToD = Math.abs(token2YPos - token4YPos).toFixed(2)
+         const distBToD = Math.sqrt(Math.pow(xDistBToD, 2) + Math.pow(yDistBToD, 2)).toFixed(2)
+         setBToD({main: distBToD, x: xDistBToD, y: yDistBToD})
+         
+         // calc CtoD
+         const xDistCToD = Math.abs(token3XPos - token4XPos).toFixed(2)
+         const yDistCToD = Math.abs(token3YPos - token4YPos).toFixed(2)
+         const distCToD = Math.sqrt(Math.pow(xDistCToD, 2) + Math.pow(yDistCToD, 2)).toFixed(2)
+         setCToD({main: distCToD, x: xDistCToD, y: yDistCToD})
+    }
+
     return<section className='cellBoard'>
         {
             CellData.map((item,i) =>{
                 
                 for(let i = 0; i<= 36; i++){
-                    return <><div id= {item.idValue} style={{background: "#ddd"}} 
+                    return <><div id= {item.idValue} style={{background: "lightgray"}} 
                     onClick={()=>showRefValue(item.idValue)}
                     
                     >
@@ -166,8 +230,12 @@ console.log(background)
                             <img src={Token1} alt="token1" className="token-pic-1"/>
                             {/* when clicked show this list of object 1 obtions */}
                         { options1Value1 && <div className="select-option" > 
+                            <h3>Token A</h3>
                             <button onClick={()=>setMotionObject1("token1")} disabled={disableBtn1} className="move-btn">Move</button>
                             <button onClick={()=>setCancelAction1(true)} className="cancel-btn">Cancel</button>
+                            <div>{AToB.main} from B</div>
+                            <div>{AToC.main} from C</div>
+                            <div>{AToD.main} from D</div>
                         </div>
                         }
                         </div>
@@ -178,8 +246,12 @@ console.log(background)
                             <img src={Token2} id="token2" alt="token2" className="token-pic-2"/>
                             {/* when clicked show this list of object 1 obtions */}
                         { options1Value2 && <div className="select-option" > 
+                            <h3>Token B</h3>
                             <button onClick={()=>setMotionObject2("token2")} disabled={disableBtn2} className="move-btn">Move</button>
                             <button onClick={()=>setCancelAction2(true)} className="cancel-btn">Cancel</button>
+                            <div>{AToB.main} from A</div>
+                            <div>{BToC.main} from C</div>
+                            <div>{BToD.main} from D</div>
                         </div>
                         }
                         </div>
@@ -190,8 +262,12 @@ console.log(background)
                             <img src={Token3} id="token3" alt="token3" className="token-pic-3"/>
                             {/* when clicked show this list of object 1 obtions */}
                         { options1Value3 && <div className="select-option" > 
+                            <h3>Token C</h3>
                             <button onClick={()=>setMotionObject3("token3")} disabled={disableBtn3} className="move-btn">Move</button>
                             <button onClick={()=>setCancelAction3(true)}  className="cancel-btn">Cancel</button>
+                            <div>{AToC.main} from A</div>
+                            <div>{BToC.main} from B</div>
+                            <div>{CToD.main} from D</div>
                         </div>
                         }
                         </div>
@@ -202,8 +278,12 @@ console.log(background)
                             <img src={Token4} id="token4" alt="token4" className="token-pic-4"/>
                             {/* when clicked show this list of object 1 obtions */}
                         { options1Value4 && <div className="select-option" > 
+                        <h3>Token D</h3>
                             <button onClick={()=>setMotionObject4("token4")} disabled={disableBtn4} className="move-btn">Move</button>
                             <button onClick={()=>setCancelAction4(true)} className="cancel-btn">Cancel</button>
+                            <div>{AToD.main} from A</div>
+                            <div>{BToD.main} from B</div>
+                            <div>{CToD.main} from C</div>
                         </div>
                         }
                         </div>
@@ -241,10 +321,6 @@ console.log(background)
     >
         <button onClick={()=>setDropAction4(true)} disabled={!moveAction4} className="drop-btn">Drop</button> 
     </div>}
-    <div className="sidebar">
-        <div className="sidebar-text">Item_Distance_Measure</div>
-        <input type="color" id="favcolor" name="favcolor" value="#ff0000"/>
-    </div>
     </section>
 }
 

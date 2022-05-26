@@ -1,8 +1,9 @@
 const reducer =(state, action)=>{
     switch(action.type){
         case "CHANGE_COLOR":
-            return {...state, background: action.payload};
-            break;
+            console.log('rwsbf')
+            // return {...state, background: action.payload};
+            // break;
         
         default :
             return {...state}
