@@ -5,7 +5,9 @@ import Token1 from '../../assets/token_1.png'
 import Token2 from '../../assets/token_2.png'
 import Token3 from '../../assets/token_3.png'
 import Token4 from '../../assets/token_4.png'
-// import { UseAppContext } from "../../context"
+
+import { FaBars, FaBorderAll, FaImage, FaToggleOn, FaToggleOff } from "react-icons/fa";
+
 
 const visible = {
     display:"block"
@@ -59,6 +61,9 @@ const Main = ()=>{
     const [BToC, setBToC] = useState({main: 0.0, x: 0.0, y: 0.0})
     const [BToD, setBToD] = useState({main: 0.0, x: 0.0, y: 0.0})
     const [CToD, setCToD] = useState({main: 0.0, x: 0.0, y: 0.0})
+
+    const [sideboard, setSideBoard] = useState(false)
+    const [checkboardOn, setCheckboardOn] = useState(false)
     
     const setDropAction1=(value)=>{
         setDisableBtn1(false)
@@ -125,6 +130,7 @@ const Main = ()=>{
         setOptions1Value4(false)   
     }
     const showRefValue =(i)=>{
+        setSideBoard(false)
         const selected = document.querySelector(`#${i}`);
         
         setMoveXBy1(Math.round(selected.getBoundingClientRect().x))
@@ -138,27 +144,33 @@ const Main = ()=>{
 
         setMoveXBy4(Math.round(selected.getBoundingClientRect().x))
         setMoveYBy4(Math.round(selected.getBoundingClientRect().y))
+
     }
 
     const showOptions1 =()=>{
         setOptions1Value1(!options1Value1)
         checkDist()
+        setSideBoard(false)
     }
     const showOptions2 =()=>{
         setOptions1Value2(!options1Value2)
         checkDist()
+        setSideBoard(false)
     }
     const showOptions3 =()=>{
         setOptions1Value3(!options1Value3)
         checkDist()
+        setSideBoard(false)
     }
     const showOptions4 =()=>{
         setOptions1Value4(!options1Value4)
         checkDist()
+        setSideBoard(false)
     }
-    useEffect(()=>{
+ 
+    setInterval(() => {
         checkDist()
-    },[ AToB, AToC, AToD, BToC, BToD, CToD])
+    }, 1000);
    
     const checkDist =()=>{
         const itemA = document.querySelector(`#token1`);
@@ -212,16 +224,22 @@ const Main = ()=>{
          const distCToD = Math.sqrt(Math.pow(xDistCToD, 2) + Math.pow(yDistCToD, 2)).toFixed(2)
          setCToD({main: distCToD, x: xDistCToD, y: yDistCToD})
     }
+    const setSideBoardValue =()=>{
+        setSideBoard(!sideboard)
+    }
 
-    return<section className='cellBoard'>
+    const setCheckboardValue = ()=>{
+        setCheckboardOn(!checkboardOn)
+    }
+
+    return<section className='cellBoard' >
         {
             CellData.map((item,i) =>{
                 
                 for(let i = 0; i<= 36; i++){
-                    return <><div id= {item.idValue} style={{background: "lightgray"}} 
-                    onClick={()=>showRefValue(item.idValue)}
-                    
-                    >
+                    return <><div key={i + 1} id= {item.idValue} 
+                    style={checkboardOn ? {background : item.background} : {background: "none"}}
+                    onClick={()=>showRefValue(item.idValue)}>
                         </div>
                         {/* start token 1 */}
                         {/* click to select an option */}
@@ -241,7 +259,7 @@ const Main = ()=>{
                         </div>
                         {/* end token 1 */}
                         {/* start token 2 */}
-                        <div className={!started2 ? `token2 defaultClass2` : `token2`} id="token2" onClick={showOptions2}
+                        <div className={!started2 ? `token2 defaultClass2` : `token2 tokenSpace`} id="token2" onClick={showOptions2}
                           style={!moveToken2 || !moveAction2 ? null : {transform :`translate(${objMoveXBy2}px, ${objMoveYBy2}px)`}}> 
                             <img src={Token2} id="token2" alt="token2" className="token-pic-2"/>
                             {/* when clicked show this list of object 1 obtions */}
@@ -261,7 +279,7 @@ const Main = ()=>{
                           style={!moveToken3 || !moveAction3 ? null : {transform :`translate(${objMoveXBy3}px, ${objMoveYBy3}px)`}}> 
                             <img src={Token3} id="token3" alt="token3" className="token-pic-3"/>
                             {/* when clicked show this list of object 1 obtions */}
-                        { options1Value3 && <div className="select-option" > 
+                        { options1Value3 && <div className={started3 ? `select-option` : `select-option alt-move`} > 
                             <h3>Token C</h3>
                             <button onClick={()=>setMotionObject3("token3")} disabled={disableBtn3} className="move-btn">Move</button>
                             <button onClick={()=>setCancelAction3(true)}  className="cancel-btn">Cancel</button>
@@ -273,11 +291,11 @@ const Main = ()=>{
                         </div>
                         {/* end token 3 */}
                         {/* start token 4 */}
-                        <div className={!started4 ? `token4 defaultClass4` : `token4`} id="token4" onClick={showOptions4}
+                        <div className={!started4 ? `token4 defaultClass4` : `token4 tokenSpace`} id="token4" onClick={showOptions4}
                           style={!moveToken4 || !moveAction4 ? null : {transform :`translate(${objMoveXBy4}px, ${objMoveYBy4}px)`}}> 
                             <img src={Token4} id="token4" alt="token4" className="token-pic-4"/>
                             {/* when clicked show this list of object 1 obtions */}
-                        { options1Value4 && <div className="select-option" > 
+                        { options1Value4 && <div className={started4 ? `select-option` : `select-option alt-move`} > 
                         <h3>Token D</h3>
                             <button onClick={()=>setMotionObject4("token4")} disabled={disableBtn4} className="move-btn">Move</button>
                             <button onClick={()=>setCancelAction4(true)} className="cancel-btn">Cancel</button>
@@ -321,6 +339,60 @@ const Main = ()=>{
     >
         <button onClick={()=>setDropAction4(true)} disabled={!moveAction4} className="drop-btn">Drop</button> 
     </div>}
+    <div className="sidebar" onClick={setSideBoardValue}>
+        <FaBars />
+    </div>
+    <div className="sideboard" style={sideboard? {transform:"translateX(0%)", width:"15rem", transition:"all 0.5s"} : 
+    {transform: "translateX(100%)", width:"15rem", transition:"all 2s"}}>
+        {checkboardOn ? <FaImage onClick={setCheckboardValue} className="toggle-btn"/> : 
+        <FaBorderAll onClick={setCheckboardValue} className="toggle-btn"/>}
+        <h3>Details of Relative Distance</h3>
+        <article>
+            <strong>A to B</strong>
+            <div>Direct distance: {AToB.main}</div>
+            <div>Distance on X-Axis: {AToB.x}</div>
+            <div>Distance on Y-Axis: {AToB.y}</div>
+        </article><br/>
+
+        <article>
+            <strong>A to C</strong>
+            <div>Direct distance: {AToC.main}</div>
+            <div>Distance on X-Axis: {AToC.x}</div>
+            <div>Distance on Y-Axis: {AToC.y}</div>
+        </article><br/>
+
+        <article>
+            <strong>A to D</strong>
+            <div>Direct distance: {AToD.main}</div>
+            <div>Distance on X-Axis: {AToD.x}</div>
+            <div>Distance on Y-Axis: {AToD.y}</div>
+        </article><br/>
+
+        <article>
+            <strong>B to C</strong>
+            <div>Direct distance: {BToC.main}</div>
+            <div>Distance on X-Axis: {BToC.x}</div>
+            <div>Distance on Y-Axis: {BToC.y}</div>
+        </article><br/>
+
+        <article>
+            <strong>B to D</strong>
+            <div>Direct distance: {BToD.main}</div>
+            <div>Distance on X-Axis: {BToD.x}</div>
+            <div>Distance on Y-Axis: {BToD.y}</div>
+        </article><br/>
+
+        <article>
+            <strong>C to D</strong>
+            <div>Direct distance: {CToD.main}</div>
+            <div>Distance on X-Axis: {CToD.x}</div>
+            <div>Distance on Y-Axis: {CToD.y}</div>
+        </article>
+        <br/>
+        <div className="credit">
+            Design by: Smart U. Egbuchulem
+        </div>
+    </div>
     </section>
 }
 
