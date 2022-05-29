@@ -144,7 +144,17 @@ const Main = ()=>{
 
         setMoveXBy4(Math.round(selected.getBoundingClientRect().x))
         setMoveYBy4(Math.round(selected.getBoundingClientRect().y))
+        
+        if(selected.getBoundingClientRect().x - moveXBy1 < 100 || 
+        selected.getBoundingClientRect().y - moveYBy1 < 100){
+            setBackground()
+        }else{
+            alert("morte than 100")
+        }
+    }
 
+    const setBackground=()=>{
+        
     }
 
     const showOptions1 =()=>{
@@ -187,6 +197,7 @@ const Main = ()=>{
         const token3YPos = itemC.getBoundingClientRect().y
         const token4XPos = itemD.getBoundingClientRect().x
         const token4YPos = itemD.getBoundingClientRect().y
+        
 
         // calc AtoB
         const xDistAToB = Math.abs(token1XPos - token2XPos).toFixed(2)
@@ -232,7 +243,11 @@ const Main = ()=>{
         setCheckboardOn(!checkboardOn)
     }
 
-    return<section className='cellBoard' >
+    return<>
+        <div className="background">
+            CSIS-1280
+        </div>
+        <section className='cellBoard' >
         {
             CellData.map((item,i) =>{
                 
@@ -314,28 +329,28 @@ const Main = ()=>{
         
     {<div className="board-options1" 
     // show box options nesr cursor when moveAction id true
-    style={moveAction1 && !noDrop1 ? {transform:`translate(${moveXBy1}px, ${moveYBy1}px)`, zIndex:"10"} : 
-    {transform :`translate(${moveXBy1}px, ${moveYBy1}px)`, zIndex:"-10"}}  >
+    style={moveAction1 && !noDrop1 ? {transform:`translate(${moveXBy1}px, ${moveYBy1}px)`, zIndex:"10", display:"block"} : 
+    {transform :`translate(${moveXBy1}px, ${moveYBy1}px)`, zIndex:"-10", display:"none"}}  >
         <button onClick={()=>setDropAction1(true)} disabled={!moveAction1} className="drop-btn">Drop</button>
     </div>}
     {<div className="board-options2" 
     // show box options nesr cursor when moveAction id true
-    style={moveAction2 && !noDrop2 ? {transform:`translate(${moveXBy2}px, ${moveYBy2}px)`, zIndex:"10"} : 
-    {transform :`translate(${moveXBy2}px, ${moveYBy2}px)`, zIndex:"-10"}} 
+    style={moveAction2 && !noDrop2 ? {transform:`translate(${moveXBy2}px, ${moveYBy2}px)`, zIndex:"10", display:"block"} : 
+    {transform :`translate(${moveXBy2}px, ${moveYBy2}px)`, zIndex:"-10", display:"none"}} 
     >
         <button onClick={()=>setDropAction2(true)} disabled={!moveAction2} className="drop-btn">Drop</button> 
     </div>}
     {<div className="board-options3" 
     // show box options nesr cursor when moveAction id true
-    style={moveAction3 && !noDrop3 ? {transform:`translate(${moveXBy3}px, ${moveYBy3}px)`, zIndex:"10"} : 
-    {transform :`translate(${moveXBy3}px, ${moveYBy3}px)`, zIndex:"-10"}} 
+    style={moveAction3 && !noDrop3 ? {transform:`translate(${moveXBy3}px, ${moveYBy3}px)`, zIndex:"10", display:"block"} : 
+    {transform :`translate(${moveXBy3}px, ${moveYBy3}px)`, zIndex:"-10", display:"none"}} 
     >
         <button onClick={()=>setDropAction3(true)} disabled={!moveAction3} className="drop-btn">Drop</button> 
     </div>}
     {<div className="board-options4" 
     // show box options nesr cursor when moveAction id true
-    style={moveAction4 && !noDrop4 ? {transform:`translate(${moveXBy4}px, ${moveYBy4}px)`, zIndex:"10"} : 
-    {transform :`translate(${moveXBy4}px, ${moveYBy4}px)`, zIndex:"-10"}} 
+    style={moveAction4 && !noDrop4 ? {transform:`translate(${moveXBy4}px, ${moveYBy4}px)`, zIndex:"10", display:"block"} : 
+    {transform :`translate(${moveXBy4}px, ${moveYBy4}px)`, zIndex:"-10", display:"none"}} 
     >
         <button onClick={()=>setDropAction4(true)} disabled={!moveAction4} className="drop-btn">Drop</button> 
     </div>}
@@ -393,7 +408,7 @@ const Main = ()=>{
             Design by: Smart U. Egbuchulem
         </div>
     </div>
-    </section>
+    </section></>
 }
 
 export default Main

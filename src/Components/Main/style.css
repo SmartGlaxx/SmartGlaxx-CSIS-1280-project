@@ -1,9 +1,22 @@
 h3{
     margin: 0.3rem;
 }
+
+.background{
+    background-color: none;
+    font-size: 15rem;
+    font-weight: 900;
+    position: fixed;
+    width: 100vw;
+    height: 90vh;
+    display: grid;
+    place-items: center;
+}
+
 .cellBoard{
     /* width: calc(100% - 0.1rem); */
-    background: linear-gradient(to top, #222, #223);
+    /* background: linear-gradient(to top, #222, #223); */
+    background: linear-gradient(to top, rgba(34,34,34, 0.97), rgba(34,34,51, 0.9));
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
