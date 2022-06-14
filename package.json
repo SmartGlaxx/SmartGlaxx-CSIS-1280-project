@@ -1,5 +1,6 @@
 {
   "name": "locator",
+  "homepage": "http://csis-project.smartegbuchulem.co",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
