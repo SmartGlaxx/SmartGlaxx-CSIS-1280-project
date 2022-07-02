@@ -24,10 +24,6 @@ const [moveToken1, setMoveToken1] = useState(false)
         setObjMoveYBy1(moveYBy1)
         setStarted1(true)
         setMoveToken1(true) // object to be dropped
-
-        // checkDistanceAToB()
-        // checkDistanceAToC()
-        // checkDistanceAToD()
     }
 
     const setMotionObject1 = (objectID)=>{
@@ -39,8 +35,6 @@ const [moveToken1, setMoveToken1] = useState(false)
 
     const showOptions1 =()=>{
         setOptions1Value1(!options1Value1)
-        // checkDist()
-        // setSideBoard(false)
     }
 
 

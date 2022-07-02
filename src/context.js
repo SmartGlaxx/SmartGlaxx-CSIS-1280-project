@@ -13,9 +13,6 @@ const TOKEN_3_X_POSITION = "TOKEN_3_X_POSITION";
 const TOKEN_3_Y_POSITION = "TOKEN_3_Y_POSITION"; 
 const TOKEN_4_X_POSITION = "TOKEN_4_X_POSITION"; 
 const TOKEN_4_Y_POSITION = "TOKEN_4_Y_POSITION"; 
-// const SET_A_TO_B = "SET_A_TO_B";
-// const SET_A_TO_C = "SET_A_TO_C";
-// const SET_A_TO_D = "SET_A_TO_D";
 const SET_MOVE_X_BY_1 = "SET_MOVE_X_BY_1"; 
 const SET_MOVE_Y_BY_1 = "SET_MOVE_Y_BY_1";
 const SET_MOVE_X_BY_2 = "SET_MOVE_X_BY_2"; 
@@ -74,11 +71,6 @@ const initialState ={
 }
 export const AppProvider = ({children})=>{
     const [state, dispatch] = useReducer(reducer, initialState)
-
-    // const changeColor =(color)=>{
-    //     console.log(color)
-    //     // dispatch({type: "CHANGE_COLOR", payload: color})
-    // }
     
 // Token 1
     const setOptions1Value1 = (value)=>{
@@ -154,16 +146,6 @@ export const AppProvider = ({children})=>{
         const itemValue = Math.round(value.getBoundingClientRect().y)
         dispatch({type: SET_MOVE_Y_BY_4, payload: itemValue})
     }
-
-    // const setAToB = (value)=>{
-    //     dispatch({type: SET_A_TO_B, payload: value})
-    // }
-    // const setAToC = (value)=>{
-    //     dispatch({type: SET_A_TO_C, payload: value})
-    // }
-    // const setAToD = (value)=>{
-    //     dispatch({type: SET_A_TO_D, payload: value})
-    // }
     
     const checkDistanceAToB =()=>{
         const xDistAToB = Math.abs(state.token1XPos - state.token2XPos).toFixed(2)
@@ -232,7 +214,6 @@ export const AppProvider = ({children})=>{
         setToken3XPos, setToken3YPos, setToken4XPos, setToken4YPos,
         setMoveXBy1, setMoveYBy1, setMoveXBy2, setMoveYBy2, 
         setMoveXBy3, setMoveYBy3, setMoveXBy4, setMoveYBy4, 
-        // setAToB, setAToC, setAToD, 
         checkDistanceAToB, checkDistanceAToC, checkDistanceAToD, 
         checkDistanceBToC, checkDistanceBToD, checkDistanceCToD, setStart,
         setSideBoard, setStarted1, setStarted2, setStarted3, setStarted4, 

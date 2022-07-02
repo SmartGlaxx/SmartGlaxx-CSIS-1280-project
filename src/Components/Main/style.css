@@ -14,8 +14,6 @@ h3{
 }
 
 .cellBoard{
-    /* width: calc(100% - 0.1rem); */
-    /* background: linear-gradient(to top, #222, #223); */
     background: linear-gradient(to top, rgba(34,34,34, 0.97), rgba(34,34,51, 0.9)), url("../../assets/bg.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -25,10 +23,8 @@ h3{
     min-height: 100%;
     position: absolute;
     display: grid; 
-    /* grid-template-columns: 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3%; */
     grid-template-columns: repeat( auto-fit, minmax(2rem, 1fr) );
     overflow: hidden;
-    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
 }
 
 .innerCells{
@@ -50,9 +46,7 @@ h3{
     position: absolute;
     cursor: pointer
 }
-.token1{
-    /* left:0.5rem */
-}
+
 .token2, .token4{
     margin-right: -2.5rem
 }
@@ -106,8 +100,6 @@ h3{
 }
 
 .select-option-AB{
-    /* background: rgba(60, 121, 213, 8);
-    background-color: rgba(42, 57, 57, 0.7); */
     width: 10rem;
     padding: 0.5rem;
     box-sizing: border-box;
@@ -125,8 +117,6 @@ h3{
 }
 
 .select-option-CD{
-    /* background: rgba(60, 121, 213, 8);
-    background-color: rgba(42, 57, 57, 0.7); */
     width: 10rem;
     padding: 0.5rem;
     box-sizing: border-box;
@@ -189,8 +179,6 @@ h3{
     position: fixed;
     top: 0;
     right: 0;
-    /* width: 2rem; */
-    /* background-color: rgba(36,50,66,0.9); */
     background-color: rgba(42, 57, 57, 0.7);
     display: grid;
     place-items: center;

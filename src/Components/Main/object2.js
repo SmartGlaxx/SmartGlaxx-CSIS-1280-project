@@ -17,8 +17,6 @@ export const Object2 = ()=>{
     const [noDrop2, setNoDrop2] = useState(false)
     
 
-    // const [started2, setStarted2] = useState(false)
-
     const setDropAction2=(value)=>{
         setDisableBtn2(false)
         setNoDrop2(true)

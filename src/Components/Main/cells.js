@@ -1,5 +1,4 @@
-export const CellData = [
-
+export const CellList = [
     {
         background: "none",
     },

@@ -6,8 +6,7 @@ import { Object3 } from "./object3";
 import { Object4 } from "./object4";
 import { UseAppContext } from "../../context";
 import CellBlock from "./cellBlock";
-
-import { FaBars, FaBorderAll, FaImage, FaToggleOn, FaToggleOff } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 
 const Main = ()=>{
     const {checkDistanceAToB,checkDistanceAToC, checkDistanceAToD, checkDistanceBToC, checkDistanceBToD, checkDistanceCToD,
@@ -16,9 +15,7 @@ const Main = ()=>{
         setMoveXBy3, setMoveYBy3, setMoveXBy4, setMoveYBy4, 
         sideboard, setSideBoard,start, setStart} = UseAppContext()
    
-    // useEffect(()=>{
-    //     checkDistanceAToB()
-    // },[AToB])
+  
     const showRefValue =(value)=>{
         checkDistanceAToB()
         checkDistanceAToC()
@@ -27,7 +24,6 @@ const Main = ()=>{
         checkDistanceBToC()
         checkDistanceBToD()
         checkDistanceCToD()
-        //setSideBoard(false)
         const selected = document.querySelector(`#${value}`);
         
         setMoveXBy1(selected)
@@ -41,11 +37,6 @@ const Main = ()=>{
 
         setMoveXBy4(selected)
         setMoveYBy4(selected)
-       
-        // setMoveXBy2(Math.round(selected.getBoundingClientRect().x))
-        // setMoveYBy2(Math.round(selected.getBoundingClientRect().y))
-
-        // checkDistanceAToB()
 }
 
 

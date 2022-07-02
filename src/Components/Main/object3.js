@@ -15,9 +15,6 @@ export const Object3 = ()=>{
     const[disableBtn3, setDisableBtn3] = useState(false)
     const [moveToken3, setMoveToken3] = useState(false)
     const [noDrop3, setNoDrop3] = useState(false)
-    
-
-    // const [started3, setStarted3] = useState(false)
 
     const setDropAction3=(value)=>{
         setDisableBtn3(false)
@@ -37,8 +34,6 @@ export const Object3 = ()=>{
 
     const showOptions3 =()=>{
         setOptions3Value3(!options3Value3)
-        // checkDist()
-        // setSideBoard(false)
     }
 
 

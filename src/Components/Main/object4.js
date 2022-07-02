@@ -15,9 +15,6 @@ export const Object4 = ()=>{
     const[disableBtn4, setDisableBtn4] = useState(false)
     const [moveToken4, setMoveToken4] = useState(false)
     const [noDrop4, setNoDrop4] = useState(false)
-    
-
-    // const [started4, setStarted4] = useState(false)
 
     const setDropAction4=(value)=>{
         setDisableBtn4(false)
@@ -36,8 +33,6 @@ export const Object4 = ()=>{
 
     const showOptions4 =()=>{
         setOptions4Value4(!options4Value4)
-        // checkDist()
-        // setSideBoard(false)
     }
 
     useEffect(()=>{

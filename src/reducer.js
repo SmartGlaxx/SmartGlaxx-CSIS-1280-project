@@ -46,9 +46,6 @@ const reducer =(state, action)=>{
         case TOKEN_1_Y_POSITION:
             return {...state, token1YPos: action.payload};
             
-        // case SET_A_TO_B:
-        //     return {...state, AToB: action.payload};
-            
         case SET_MOVE_X_BY_1:
             return {...state, moveXBy1: action.payload};
             
@@ -106,7 +103,6 @@ const reducer =(state, action)=>{
     case SET_MOVE_Y_BY_4:
         return {...state, moveYBy4: action.payload};
         
-   
 
 
     case CHECK_DISTANCE_A_TO_B:
@@ -146,9 +142,8 @@ const reducer =(state, action)=>{
         return {...state, started4: action.payload}
         
         
-
-        default :
-            return {...state}
+    default :
+        return {...state}
     }
 }
 
